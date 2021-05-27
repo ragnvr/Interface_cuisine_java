@@ -1,0 +1,2 @@
+<?php
+$xmlstr = '<data> <conf> <server port=''1''></server> <server port=''2'' /> </conf> <clients> <server port=''80'' /> <server port=''90'' /> </clients> <pool> <server port=''10'' /> </pool> </data>'; $simpleXml = new SimpleXmlElement($xmlstr); $xpath = $simpleXml->xpath('*/server[@port > 10]');'

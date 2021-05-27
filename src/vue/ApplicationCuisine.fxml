@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.TextFlow?>
+
+
+<BorderPane fx:id="container" minHeight="500.0"
+	minWidth="700.0" xmlns="http://javafx.com/javafx/16"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<center>
+		<AnchorPane fx:id="cuisinePlan"
+			maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+			style="-fx-background-color: AliceBlue;"
+			BorderPane.alignment="CENTER" />
+	</center>
+	<top>
+		<AnchorPane style="-fx-background-color: BurlyWood;">
+			<children>
+				<VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0"
+					AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+					AnchorPane.topAnchor="0.0">
+					<children>
+						<MenuBar prefHeight="30.0" prefWidth="890.0"
+							VBox.vgrow="NEVER">
+							<menus>
+								<Menu mnemonicParsing="false" text="Fichier">
+									<items>
+										
+										<MenuItem fx:id="MenuItem_Imprimer"
+											mnemonicParsing="true" onAction="#on_print"
+											text="Imprimer" />
+										<SeparatorMenuItem mnemonicParsing="false" />
+										
+										<MenuItem fx:id="MenuItem_Sauver_PNG"
+											mnemonicParsing="true" onAction="#on_save"
+											text="Sauvegarder  (.PNG)" />
+										<MenuItem fx:id="MenuItem_Quitter"
+											mnemonicParsing="true" onAction="#onExit" text="Quitter" />
+
+									</items>
+								</Menu>
+
+								<Menu mnemonicParsing="false" text="Editer">
+									<items>
+										<MenuItem mnemonicParsing="false" text="Supprimer"
+											onAction="#supprHandler" />
+
+									</items>
+								</Menu>
+							</menus>
+						</MenuBar>
+					</children>
+				</VBox>
+			</children>
+			<BorderPane.margin>
+				<Insets bottom="10.0" />
+			</BorderPane.margin>
+		</AnchorPane>
+	</top>
+	<bottom>
+		<AnchorPane maxHeight="1.7976931348623157E308"
+			maxWidth="1.7976931348623157E308" prefWidth="600.0">
+			<children>
+				<VBox alignment="CENTER" maxWidth="-Infinity"
+					AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+					<children>
+
+						<TilePane alignment="CENTER" hgap="10.0"
+							prefHeight="80.0" prefTileHeight="25.0" prefTileWidth="25.0"
+							prefWidth="200.0" style="-fx-border-color: gray;">
+							<VBox.margin>
+								<Insets />
+							</VBox.margin>
+							<children>
+
+								<Button maxWidth="60.0" minHeight="40.0" minWidth="40.0"
+									mnemonicParsing="false" onAction="#grilleHandler"
+									prefHeight="40.0" prefWidth="40.0">
+									<graphic>
+										<ImageView fx:id="grilleImageView" fitHeight="25.0"
+											fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+											<image>
+												<Image url="@../Images/la-grille.png" />
+											</image>
+										</ImageView>
+									</graphic>
+								</Button>
+								<Button fx:id="move" maxWidth="60.0" minHeight="40.0"
+									minWidth="40.0" mnemonicParsing="false" onAction="#moveHandler"
+									prefHeight="40.0" prefWidth="40.0">
+									<graphic>
+										<ImageView fx:id="moveImageView" fitHeight="25.0"
+											fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+											<image>
+												<Image url="@../Images/move.png" />
+											</image>
+										</ImageView>
+									</graphic>
+								</Button>
+								<Button fx:id="cancelSelection" cancelButton="true"
+									maxWidth="60.0" minHeight="40.0" minWidth="40.0"
+									mnemonicParsing="false" onAction="#cancelSelectionHandler"
+									prefHeight="40.0" prefWidth="40.0">
+									<graphic>
+										<ImageView fitHeight="25.0" fitWidth="25.0"
+											pickOnBounds="true" preserveRatio="true">
+											<image>
+												<Image url="@../Images/icons8-cancel-384.png" />
+											</image>
+										</ImageView>
+									</graphic>
+								</Button>
+								<Button fx:id="suppr" maxWidth="60.0" minHeight="40.0"
+									minWidth="40.0" mnemonicParsing="false"
+									onAction="#supprHandler" prefHeight="40.0" prefWidth="40.0">
+									<graphic>
+										<ImageView fitHeight="25.0" fitWidth="25.0"
+											pickOnBounds="true" preserveRatio="true">
+											<image>
+												<Image url="@../Images/poubelle.png" />
+											</image>
+										</ImageView>
+									</graphic>
+								</Button>
+
+
+							</children>
+							<padding>
+								<Insets left="20.0" right="20.0" />
+							</padding>
+
+						</TilePane>
+
+					</children>
+					<opaqueInsets>
+						<Insets left="50.0" right="10.0" />
+					</opaqueInsets>
+					<padding>
+						<Insets top="5.0" />
+					</padding>
+				</VBox>
+			</children>
+			<BorderPane.margin>
+				<Insets top="5.0" />
+			</BorderPane.margin>
+		</AnchorPane>
+	</bottom>
+	<left>
+		<AnchorPane>
+			<children>
+				<TabPane minHeight="230.0" minWidth="230.0"
+					style="-fx-border-color: gray;" tabClosingPolicy="UNAVAILABLE"
+					AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+					AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+					<tabs>
+						<Tab text="Catalogue">
+							<content>
+								<AnchorPane maxHeight="1.7976931348623157E308"
+									prefHeight="384.0" prefWidth="197.0">
+									<children>
+										<ScrollPane prefHeight="200.0" prefWidth="200.0"
+											AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+											AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+											<content>
+												<AnchorPane prefWidth="200.0">
+													<children>
+														<VBox fx:id="catalogue"
+															maxHeight="1.7976931348623157E308" minHeight="350.0"
+															prefWidth="194.0" spacing="10.0"
+															AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+															AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+															<padding>
+																<Insets bottom="5.0" left="5.0" right="5.0"
+																	top="10.0" />
+															</padding>
+														</VBox>
+													</children>
+													<padding>
+
+														<Insets bottom="5.0" />
+													</padding>
+												</AnchorPane>
+											</content>
+										</ScrollPane>
+
+
+									</children>
+								</AnchorPane>
+							</content>
+						</Tab>
+						<Tab text="Panier">
+							<content>
+								<AnchorPane minHeight="0.0" minWidth="0.0"
+									prefHeight="180.0">
+									<children>
+										<ScrollPane prefHeight="200.0" prefWidth="200.0"
+											AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+											AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+											<content>
+												<AnchorPane maxHeight="1.7976931348623157E308"
+													prefWidth="194.0">
+													<children>
+														<StackPane maxHeight="1.7976931348623157E308"
+															AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+															AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+															<children>
+																<TextFlow maxHeight="1.7976931348623157E308"
+																	maxWidth="194.0" prefWidth="194.0"
+																	textAlignment="CENTER">
+																	<children>
+																		<Text fill="#b79d9d" fontSmoothingType="LCD"
+																			stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0"
+																			text=""
+																			textAlignment="CENTER" />
+																	</children>
+																	<padding>
+																		<Insets left="10.0" top="50.0" />
+																	</padding>
+																</TextFlow>
+																<VBox fx:id="panier"
+																	maxHeight="1.7976931348623157E308" minHeight="350.0"
+																	prefWidth="100.0" spacing="10.0">
+																	<padding>
+																		<Insets bottom="5.0" left="5.0" right="5.0"
+																			top="10.0" />
+																	</padding>
+																</VBox>
+															</children>
+														</StackPane>
+													</children>
+													<padding>
+														<Insets bottom="5.0" />
+													</padding>
+												</AnchorPane>
+											</content>
+										</ScrollPane>
+									</children>
+								</AnchorPane>
+							</content>
+						</Tab>
+					</tabs>
+				</TabPane>
+			</children>
+		</AnchorPane>
+	</left>
+	<right>
+		<AnchorPane BorderPane.alignment="CENTER">
+			<children>
+				<VBox alignment="TOP_CENTER" spacing="30.0"
+					style="-fx-border-color: gray; -fx-background-color: GainsBoro;"
+					AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+					AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+					<children>
+
+						<AnchorPane maxHeight="1.7976931348623157E308">
+
+							<Label layoutX="30" text="Dimensions de la cuisine"
+								textAlignment="CENTER">
+								<font>
+									<Font name="System Bold" size="12.0" />
+								</font>
+							</Label>
+							<TextField fx:id="longueur" layoutX="0" layoutY="50.0" prefHeight="25.0"
+								prefWidth="80.0" />
+							<TextField fx:id="largeur" layoutX="90.0" layoutY="50.0"
+								prefHeight="25.0" prefWidth="80.0" />
+							<Button fx:id="validationBtn" layoutX="180.0" layoutY="45.0" maxWidth="30.0"
+								minHeight="30.0" minWidth="30.0" mnemonicParsing="false"
+								prefHeight="25.0" prefWidth="25.0" onAction="#setDimension">
+								<graphic>
+									<ImageView fx:id="validation" fitHeight="20.0"
+										fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+										<image>
+											<Image url="@../Images/validation.png" />
+										</image>
+									</ImageView>
+								</graphic>
+							</Button>
+
+						</AnchorPane>
+						<Label text="Fiche du produit" textAlignment="CENTER">
+							<font>
+								<Font name="System Bold" size="12.0" />
+							</font>
+						</Label>
+						<AnchorPane maxHeight="1.7976931348623157E308">
+							<children>
+								<ScrollPane hbarPolicy="NEVER"
+									AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+									AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+									<content>
+										<AnchorPane>
+											<children>
+												<StackPane fx:id="infoPane"
+													maxHeight="1.7976931348623157E308" prefWidth="200.0"
+													style="-fx-border-color: gray;">
+													<children>
+														<Pane fx:id="baseInfoText"
+															maxHeight="1.7976931348623157E308"
+															style="-fx-background-color: WhiteSmoke;">
+															<children>
+																<TextFlow maxHeight="1.7976931348623157E308"
+																	prefHeight="350.0" prefWidth="198.0"
+																	textAlignment="CENTER">
+																	<children>
+																		<Text strokeType="OUTSIDE" strokeWidth="0.0"
+																			text="Merci de Selectionner un meuble pour voir sa description ici"
+																			textAlignment="CENTER">
+																			<font>
+																				<Font name="System Italic" size="12.0" />
+																			</font>
+																		</Text>
+																	</children>
+																	<padding>
+																		<Insets top="100.0" />
+																	</padding>
+																</TextFlow>
+															</children>
+														</Pane>
+													</children>
+												</StackPane>
+											</children>
+										</AnchorPane>
+									</content>
+								</ScrollPane>
+							</children>
+						</AnchorPane>
+					</children>
+				</VBox>
+			</children>
+		</AnchorPane>
+	</right>
+	<padding>
+		<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+	</padding>
+</BorderPane>
